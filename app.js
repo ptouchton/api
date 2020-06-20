@@ -13,6 +13,7 @@ if (process.env.ENV === 'Test') {
 }
 const bodyParser = require('body-parser');
 const Book = require('./models/bookModel');
+const recipeRoutes = require('./routes/recipeRouter')();
 const bookRouter = require('./routes/bookRouter')(Book);
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 
 app.use('/api', bookRouter);
+app.use('/api', recipeRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to my nodemon api');
