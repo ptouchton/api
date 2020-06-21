@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 if (process.env.ENV === 'Test') {
   console.log('This is a test');
@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 const Book = require('./models/bookModel');
 const recipeRoutes = require('./routes/recipeRouter')();
 const bookRouter = require('./routes/bookRouter')(Book);
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -33,4 +34,3 @@ app.listen(port, () => {
 });
 
 module.export = app;
-
