@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -20,6 +21,11 @@ const bookRouter = require('./routes/bookRouter')(Book);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 
 app.use('/api', bookRouter);
 app.use('/api', recipeRoutes);
